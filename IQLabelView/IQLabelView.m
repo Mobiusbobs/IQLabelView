@@ -4,7 +4,6 @@
 
 #import "IQLabelView.h"
 #import <QuartzCore/QuartzCore.h>
-#import "UITextField+DynamicFontSize.h"
 
 CG_INLINE CGPoint CGRectGetCenter(CGRect rect)
 {
@@ -57,7 +56,6 @@ static IQLabelView *lastTouchedView;
     CGRect beginBounds;
     
     CAShapeLayer *border;
-    UITextField *labelTextField;
     UIImageView *rotateView;
     UIImageView *closeView;
     
@@ -79,7 +77,7 @@ static IQLabelView *lastTouchedView;
         [rotateView setTransform:CGAffineTransformInvert(t)];
         
         if (isShowingEditingHandles) {
-            [labelTextField.layer addSublayer:border];
+            [self.labelTextField.layer addSublayer:border];
         } else {
             [border removeFromSuperlayer];
         }
@@ -111,21 +109,21 @@ static IQLabelView *lastTouchedView;
         [self setAutoresizingMask:(UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth)];
         borderColor = [UIColor redColor];
         
-        labelTextField = [[UITextField alloc] initWithFrame:CGRectInset(self.bounds, globalInset, globalInset)];
-        [labelTextField setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
-        [labelTextField setClipsToBounds:YES];
-        labelTextField.delegate = self;
-        labelTextField.backgroundColor = [UIColor clearColor];
-        labelTextField.tintColor = [UIColor redColor];
-        labelTextField.textColor = [UIColor whiteColor];
-        labelTextField.text = @"";
+        self.labelTextField = [[UITextField alloc] initWithFrame:CGRectInset(self.bounds, globalInset, globalInset)];
+        [self.labelTextField setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
+        [self.labelTextField setClipsToBounds:YES];
+        self.labelTextField.delegate = self;
+        self.labelTextField.backgroundColor = [UIColor clearColor];
+        self.labelTextField.tintColor = [UIColor redColor];
+        self.labelTextField.textColor = [UIColor whiteColor];
+        self.labelTextField.text = @"";
         
         border = [CAShapeLayer layer];
         border.strokeColor = borderColor.CGColor;
         border.fillColor = nil;
         border.lineDashPattern = @[@4, @3];
         
-        [self insertSubview:labelTextField atIndex:0];
+        [self insertSubview:self.labelTextField atIndex:0];
         
         closeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, globalInset * 2, globalInset * 2)];
         [closeView setAutoresizingMask:(UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin)];
@@ -164,16 +162,16 @@ static IQLabelView *lastTouchedView;
         [self setRotateImage:[UIImage imageNamed:@"IQLabelView.bundle/sticker_resize.png"]];
         
         [self showEditingHandles];
-        [labelTextField becomeFirstResponder];
+        [self.labelTextField becomeFirstResponder];
      }
     return self;
 }
 
 - (void)layoutSubviews
 {
-    if (labelTextField) {
-        border.path = [UIBezierPath bezierPathWithRect:labelTextField.bounds].CGPath;
-        border.frame = labelTextField.bounds;
+    if (self.labelTextField) {
+        border.path = [UIBezierPath bezierPathWithRect:self.labelTextField.bounds].CGPath;
+        border.frame = self.labelTextField.bounds;
     }
 }
 
@@ -227,20 +225,20 @@ static IQLabelView *lastTouchedView;
 - (void)setFontName:(NSString *)name
 {
     fontName = name;
-    labelTextField.font = [UIFont fontWithName:fontName size:fontSize];
-    [labelTextField adjustsWidthToFillItsContents];
+    self.labelTextField.font = [UIFont fontWithName:fontName size:fontSize];
+    [self.labelTextField adjustsWidthToFillItsContents];
 }
 
 - (void)setFontSize:(CGFloat)size
 {
     fontSize = size;
-    labelTextField.font = [UIFont fontWithName:fontName size:fontSize];
+    self.labelTextField.font = [UIFont fontWithName:fontName size:fontSize];
 }
 
 - (void)setTextColor:(UIColor *)color
 {
     textColor = color;
-    labelTextField.textColor = textColor;
+    self.labelTextField.textColor = textColor;
 }
 
 - (void)setBorderColor:(UIColor *)color
@@ -251,19 +249,19 @@ static IQLabelView *lastTouchedView;
 
 - (void)setTextAlpha:(CGFloat)alpha
 {
-    labelTextField.alpha = alpha;
+    self.labelTextField.alpha = alpha;
 }
 
 - (CGFloat)textAlpha
 {
-    return labelTextField.alpha;
+    return self.labelTextField.alpha;
 }
 
 - (void)setAttributedPlaceholder:(NSAttributedString *)attributedPlaceholder
 {
     _attributedPlaceholder = attributedPlaceholder;
-    [labelTextField setAttributedPlaceholder:attributedPlaceholder];
-    [labelTextField adjustsWidthToFillItsContents];
+    [self.labelTextField setAttributedPlaceholder:attributedPlaceholder];
+    [self.labelTextField adjustsWidthToFillItsContents];
 }
 
 #pragma mark - Bounds
@@ -277,7 +275,7 @@ static IQLabelView *lastTouchedView;
     if (enableClose)       closeView.hidden = YES;
     if (enableRotate)      rotateView.hidden = YES;
     
-    [labelTextField resignFirstResponder];
+    [self.labelTextField resignFirstResponder];
     
     [self refresh];
     
@@ -407,7 +405,7 @@ static IQLabelView *lastTouchedView;
  
         if (scaleRect.size.width >= (1+globalInset*2 + 20) && scaleRect.size.height >= (1+globalInset*2 + 20)) {
             if (fontSize < 100 || CGRectGetWidth(scaleRect) < CGRectGetWidth(self.bounds)) {
-                [labelTextField adjustsFontSizeToFillRect:scaleRect];
+                [self.labelTextField adjustsFontSizeToFillRect:scaleRect];
                 [self setBounds:scaleRect];
             }
         }

@@ -3,11 +3,13 @@
 //  Created by kcandr on 17/12/14.
 
 #import <UIKit/UIKit.h>
+#import "UITextField+DynamicFontSize.h"
 
 @protocol IQLabelViewDelegate;
 
 @interface IQLabelView : UIView 
 
+@property (nonatomic, weak) UITextField *labelTextField;
 /**
  * Text color.
  *
