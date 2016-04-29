@@ -9,7 +9,7 @@
 
 @interface IQLabelView : UIView 
 
-@property (nonatomic, strong) UITextField *labelTextField;
+@property (nonatomic, weak) UITextField *labelTextField;
 /**
  * Text color.
  *
