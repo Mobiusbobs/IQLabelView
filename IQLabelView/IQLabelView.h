@@ -8,6 +8,8 @@
 
 @interface IQLabelView : UIView 
 
+@property (nonatomic, strong) NSString *labelText;
+
 /**
  * Text color.
  *
@@ -87,6 +89,8 @@
  *  Default: NO.
  */
 @property (nonatomic, getter=isEnableMoveRestriction) BOOL enableMoveRestriction;
+
+- (void)setLabelText:(NSString *)labelText;
 
 /**
  *  Hides border and control buttons.
