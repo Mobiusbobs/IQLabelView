@@ -118,7 +118,6 @@ static IQLabelView *lastTouchedView;
         labelTextField.backgroundColor = [UIColor clearColor];
         labelTextField.tintColor = [UIColor redColor];
         labelTextField.textColor = [UIColor whiteColor];
-
         labelTextField.text = @"";
         
         border = [CAShapeLayer layer];
@@ -179,11 +178,6 @@ static IQLabelView *lastTouchedView;
 }
 
 #pragma mark - Set Control Buttons
-
-- (void)setLabelText:(NSString *)labelText
-{
-    labelTextField.text = self.labelText;
-}
 
 - (void)setEnableClose:(BOOL)value
 {
@@ -427,10 +421,10 @@ static IQLabelView *lastTouchedView;
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-//    if (isShowingEditingHandles) {
-//        return YES;
-//    }
-//    [self contentTapped:nil];
+    if (isShowingEditingHandles) {
+        return YES;
+    }
+    [self contentTapped:nil];
     return NO;
 }
 
