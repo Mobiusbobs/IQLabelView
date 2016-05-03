@@ -105,6 +105,9 @@ static IQLabelView *lastTouchedView;
     
     self = [super initWithFrame:frame];
     if (self) {
+        self.beginTime = CMTimeMakeWithSeconds(0, NSEC_PER_SEC);
+        self.endTime = CMTimeMakeWithSeconds(5, NSEC_PER_SEC);
+        
         globalInset = 12;
         
         self.backgroundColor = [UIColor clearColor];

@@ -3,6 +3,7 @@
 //  Created by kcandr on 17/12/14.
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 @protocol IQLabelViewDelegate;
 
@@ -87,6 +88,20 @@
  *  Default: NO.
  */
 @property (nonatomic, getter=isEnableMoveRestriction) BOOL enableMoveRestriction;
+
+/**
+ *  Begin Time
+ *
+ *  Default: 0
+ */
+@property (nonatomic, assign) CMTime beginTime;
+
+/**
+ *  End Time
+ *
+ *  Default: duration
+ */
+@property (nonatomic, assign) CMTime endTime;
 
 /**
  *  Hides border and control buttons.
