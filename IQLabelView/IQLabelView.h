@@ -104,6 +104,12 @@
 @property (nonatomic, assign) CMTime endTime;
 
 /**
+ *  Video Player Frame
+ *
+ */
+@property (nonatomic, assign) CGRect playerRect;
+
+/**
  *  Hides border and control buttons.
  */
 - (void)hideEditingHandles;
