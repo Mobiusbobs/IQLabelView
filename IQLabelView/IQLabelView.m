@@ -129,14 +129,11 @@ static IQLabelView *lastTouchedView;
         
         [self insertSubview:labelTextField atIndex:0];
         
-        UIView *closeBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-        closeBgView.backgroundColor = [UIColor whiteColor];
-        closeBgView.layer.cornerRadius = 10;
-        [self addSubview:closeBgView];
-        
-        closeView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 10, 10)];
+        closeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
         [closeView setAutoresizingMask:(UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin)];
-        closeView.layer.cornerRadius = 5;
+        closeView.layer.cornerRadius = 10;
+        closeView.backgroundColor = [UIColor whiteColor];
+        closeView.contentMode = UIViewContentModeCenter;
         closeView.userInteractionEnabled = YES;
         [self addSubview:closeView];
         
