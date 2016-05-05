@@ -126,12 +126,12 @@ static IQLabelView *lastTouchedView;
         border = [CAShapeLayer layer];
         border.strokeColor = borderColor.CGColor;
         border.fillColor = nil;
-        border.lineDashPattern = @[@4, @3];
         
         [self insertSubview:labelTextField atIndex:0];
         
         closeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
         [closeView setAutoresizingMask:(UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin)];
+        closeView.contentMode = UIViewContentModeScaleAspectFit;
         closeView.backgroundColor = [UIColor whiteColor];
         closeView.layer.cornerRadius = 10;
         closeView.userInteractionEnabled = YES;
