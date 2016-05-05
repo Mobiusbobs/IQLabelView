@@ -130,17 +130,17 @@ static IQLabelView *lastTouchedView;
         
         [self insertSubview:labelTextField atIndex:0];
         
-        closeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, globalInset * 2, globalInset * 2)];
+        closeView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
         [closeView setAutoresizingMask:(UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin)];
         closeView.backgroundColor = [UIColor whiteColor];
-        closeView.layer.cornerRadius = globalInset - 5;
+        closeView.layer.cornerRadius = 10;
         closeView.userInteractionEnabled = YES;
         [self addSubview:closeView];
         
-        rotateView = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.size.width-globalInset*2, self.bounds.size.height-globalInset*2, globalInset*2, globalInset*2)];
+        rotateView = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.size.width-globalInset*2, self.bounds.size.height-globalInset*2, 16, 16)];
         [rotateView setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin)];
-        rotateView.backgroundColor = [UIColor whiteColor];
-        rotateView.layer.cornerRadius = globalInset - 5;
+        rotateView.backgroundColor = [UIColor colorWithRed:0.992 green:0.761 blue:0.376 alpha:1.000];
+        rotateView.layer.cornerRadius = 8;
         rotateView.contentMode = UIViewContentModeCenter;
         rotateView.userInteractionEnabled = YES;
         [self addSubview:rotateView];
