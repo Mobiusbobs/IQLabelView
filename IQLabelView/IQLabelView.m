@@ -316,6 +316,7 @@ static IQLabelView *lastTouchedView;
         [self.superview bringSubviewToFront:self];
     } else {
         [self showEditingHandles];
+        [self.superview bringSubviewToFront:self];
     }
 }
 
