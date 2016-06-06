@@ -399,6 +399,12 @@ static IQLabelView *lastTouchedView;
         }
     } else if ([recognizer state] == UIGestureRecognizerStateChanged) {
         
+        float ang = atan2(touchLocation.y-center.y, touchLocation.x-center.x);
+        
+        float angleDiff = deltaAngle - ang;
+        [self setTransform:CGAffineTransformMakeRotation(-angleDiff)];
+        [self setNeedsDisplay];
+        
         //Finding scale between current touchPoint and previous touchPoint
         double scale = sqrtf(CGPointGetDistance(center, touchLocation)/initialDistance);
         
