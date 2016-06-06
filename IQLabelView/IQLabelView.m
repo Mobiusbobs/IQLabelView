@@ -269,6 +269,17 @@ static IQLabelView *lastTouchedView;
     [labelTextField adjustsWidthToFillItsContents];
 }
 
+#pragma mark - Get Textfield Bounds
+- (CGRect)boundsInSuperView
+{
+    return labelTextField.bounds;
+}
+
+- (CGPoint)centerInSuperView
+{
+    return [self convertPoint:labelTextField.center toView:self.superview];
+}
+
 #pragma mark - Bounds
 
 - (void)hideEditingHandles

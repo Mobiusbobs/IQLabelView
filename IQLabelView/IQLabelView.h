@@ -104,10 +104,22 @@
 @property (nonatomic, assign) CMTime endTime;
 
 /**
- *  Video Player Frame
+ *  SuperView Frame
  *
  */
-@property (nonatomic, assign) CGRect playerRect;
+@property (nonatomic, assign) CGRect superViewRect;
+
+/**
+ *  Bounds In SuperView
+ *
+ */
+@property (nonatomic, assign) CGRect boundsInSuperView;
+
+/**
+ *  Center In SuperView
+ *
+ */
+@property (nonatomic, assign) CGPoint centerInSuperView;
 
 /**
  *  Hides border and control buttons.
