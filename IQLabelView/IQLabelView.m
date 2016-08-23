@@ -69,6 +69,7 @@ static IQLabelView *lastTouchedView;
 @synthesize enableClose, enableRotate, enableMoveRestriction, showsContentShadow;
 @synthesize delegate;
 @synthesize closeImage, rotateImage;
+@synthesize textBorderColor;
 
 - (void)refresh
 {
@@ -226,6 +227,11 @@ static IQLabelView *lastTouchedView;
 }
 
 #pragma mark - Set Text Field
+
+- (void)setTextBorderColor:(UIColor *)color
+{
+    textBorderColor = color;
+}
 
 - (void)setFontName:(NSString *)name
 {
@@ -451,6 +457,10 @@ static IQLabelView *lastTouchedView;
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    textField.typingAttributes = @{
+                                   NSStrokeColorAttributeName : self.textBorderColor ,NSStrokeWidthAttributeName : [NSNumber numberWithFloat:-2.0]
+                                   };
+    
     if([delegate respondsToSelector:@selector(labelViewDidStartEditing:)]) {
         [delegate labelViewDidStartEditing:self];
     }

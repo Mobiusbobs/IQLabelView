@@ -17,6 +17,14 @@
 @property (nonatomic, strong) UIColor *textColor;
 
 /**
+ * Text Border color.
+ *
+ * Default: clear.
+ */
+@property (nonatomic, strong) UIColor *textBorderColor;
+
+
+/**
  * Border stroke color.
  *
  * Default: red color.

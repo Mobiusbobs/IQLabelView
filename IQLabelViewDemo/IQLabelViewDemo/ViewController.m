@@ -58,6 +58,7 @@
     [labelView setEnableMoveRestriction:YES];
     [labelView setFontName:@"Baskerville-BoldItalic"];
     [labelView setFontSize:21.0];
+    [labelView setTextBorderColor:[UIColor blueColor]];
     
     [self.imageView addSubview:labelView];
     [self.imageView setUserInteractionEnabled:YES];
