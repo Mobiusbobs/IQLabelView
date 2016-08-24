@@ -123,6 +123,7 @@ static IQLabelView *lastTouchedView;
         labelTextField.tintColor = [UIColor redColor];
         labelTextField.textColor = [UIColor whiteColor];
         labelTextField.text = @"";
+        [labelTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventValueChanged];
         
         border = [CAShapeLayer layer];
         border.strokeColor = borderColor.CGColor;
@@ -467,13 +468,20 @@ static IQLabelView *lastTouchedView;
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    [self renewTextStyle];
-    
     if (!isShowingEditingHandles) {
         [self showEditingHandles];
     }
     [textField adjustsWidthToFillItsContents];
     return YES;
+}
+
+- (void)textFieldDidChange:(UITextField *)textField {
+    
+    UITextRange *selectedRange = [textField markedTextRange];
+    UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
+    if (!position) {
+            [self renewTextStyle];
+    }
 }
 
 - (void)renewTextStyle
