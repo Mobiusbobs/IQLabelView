@@ -231,6 +231,7 @@ static IQLabelView *lastTouchedView;
 - (void)setTextBorderColor:(UIColor *)color
 {
     textBorderColor = color;
+    [self renewTextStyle];
 }
 
 - (void)setFontName:(NSString *)name
@@ -457,10 +458,6 @@ static IQLabelView *lastTouchedView;
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    textField.typingAttributes = @{
-                                   NSStrokeColorAttributeName : self.textBorderColor ,NSStrokeWidthAttributeName : [NSNumber numberWithFloat:-2.0]
-                                   };
-    
     if([delegate respondsToSelector:@selector(labelViewDidStartEditing:)]) {
         [delegate labelViewDidStartEditing:self];
     }
@@ -470,11 +467,21 @@ static IQLabelView *lastTouchedView;
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+    [self renewTextStyle];
+    
     if (!isShowingEditingHandles) {
         [self showEditingHandles];
     }
     [textField adjustsWidthToFillItsContents];
     return YES;
+}
+
+- (void)renewTextStyle
+{
+    NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:labelTextField.text attributes:@{
+                                                                                                            NSStrokeColorAttributeName : self.textBorderColor ,NSStrokeWidthAttributeName : [NSNumber numberWithFloat:-2.0]
+                                                                                                            }];
+    labelTextField.attributedText = attrString;
 }
 
 @end

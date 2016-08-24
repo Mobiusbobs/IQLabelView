@@ -86,6 +86,7 @@
 - (void)changeColor
 {
     [currentlyEditingLabel setTextColor:[self.colors objectAtIndex:arc4random() % 3]];
+    [currentlyEditingLabel setTextBorderColor:[self.colors objectAtIndex:arc4random() % 3]];
 }
 
 - (UIImage *)visibleImage
