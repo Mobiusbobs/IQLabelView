@@ -20,6 +20,8 @@
  */
 - (void)adjustsWidthToFillItsContents;
 
+- (void)adjustsWidthWithText:(NSString *)text;
+
 @end
 
 #endif

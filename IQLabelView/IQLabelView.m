@@ -450,6 +450,7 @@ static IQLabelView *lastTouchedView;
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
+    NSLog(@"textFieldShouldBeginEditing:%@",textField.text);
     if (isShowingEditingHandles) {
         return YES;
     }
@@ -462,18 +463,24 @@ static IQLabelView *lastTouchedView;
     if([delegate respondsToSelector:@selector(labelViewDidStartEditing:)]) {
         [delegate labelViewDidStartEditing:self];
     }
-    
+
     [textField adjustsWidthToFillItsContents];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+    NSString *text = [textField.text stringByReplacingCharactersInRange:range withString:string];
+
     if (!isShowingEditingHandles) {
         [self showEditingHandles];
     }
-    [textField adjustsWidthToFillItsContents];
+
+    [textField adjustsWidthWithText:text];
+
+
     return YES;
 }
+
 
 - (void)textFieldDidChange:(UITextField *)textField {
     
@@ -482,13 +489,16 @@ static IQLabelView *lastTouchedView;
     if (!position) {
             [self renewTextStyle];
     }
+
 }
 
 - (void)renewTextStyle
 {
-    NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:labelTextField.text attributes:@{
-                                                                                                            NSStrokeColorAttributeName : self.textBorderColor ,NSStrokeWidthAttributeName : [NSNumber numberWithFloat:-2.0]
-                                                                                                            }];
+    NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:labelTextField.text
+                                                                     attributes:@{
+                                                                                  NSStrokeColorAttributeName : self.textBorderColor ,
+                                                                                  NSStrokeWidthAttributeName : [NSNumber numberWithFloat:-2.0]
+                                                                                  }];
     labelTextField.attributedText = attrString;
 }
 
