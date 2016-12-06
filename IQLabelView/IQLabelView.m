@@ -139,10 +139,10 @@ static IQLabelView *lastTouchedView;
         closeView.userInteractionEnabled = YES;
         [self addSubview:closeView];
         
-        rotateView = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.size.width-globalInset*2, self.bounds.size.height-globalInset*2, 16, 16)];
+        rotateView = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.size.width-globalInset*2, self.bounds.size.height-globalInset*2, 22, 22)];
         [rotateView setAutoresizingMask:(UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin)];
         rotateView.backgroundColor = [UIColor colorWithRed:0.992 green:0.761 blue:0.376 alpha:1.000];
-        rotateView.layer.cornerRadius = 8;
+        rotateView.layer.cornerRadius = 11;
         rotateView.contentMode = UIViewContentModeCenter;
         rotateView.userInteractionEnabled = YES;
         [self addSubview:rotateView];
@@ -474,7 +474,7 @@ static IQLabelView *lastTouchedView;
     if (!isShowingEditingHandles) {
         [self showEditingHandles];
     }
-
+    
     [textField adjustsWidthWithText:text];
 
 
