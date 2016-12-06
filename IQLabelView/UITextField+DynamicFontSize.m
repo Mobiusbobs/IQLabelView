@@ -34,16 +34,19 @@ static const NSUInteger IQLVMinimumFontSize = 9;
 - (void)adjustsWidthToFillItsContents
 {
     NSString *text = (![self.text isEqualToString:@""] || !self.placeholder) ? self.text : self.placeholder;
+    
     UIFont *font = [UIFont fontWithName:self.font.fontName size:self.font.pointSize];
     NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:text
                                                                          attributes:@{ NSFontAttributeName : font }];
+    
+    attributedText = text.length > 0 ? attributedText : self.attributedPlaceholder;
     
     CGRect rectSize = [attributedText boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGRectGetHeight(self.frame)-24)
                                                    options:NSStringDrawingUsesLineFragmentOrigin
                                                    context:nil];
     
-    float w1 = (ceilf(rectSize.size.width) + 24 < 50) ? self.frame.size.width : ceilf(rectSize.size.width) + 24;
-    float h1 =(ceilf(rectSize.size.height) + 24 < 50) ? 50 : ceilf(rectSize.size.height) + 24;
+    float w1 = (ceilf(rectSize.size.width) + 24 < 40) ? self.frame.size.width : ceilf(rectSize.size.width) + 24;
+    float h1 =(ceilf(rectSize.size.height) + 24 < 40) ? 40 : ceilf(rectSize.size.height) + 24;
     
     CGRect viewFrame = self.superview.bounds;
     viewFrame.size.width = w1 + 24;
@@ -58,12 +61,14 @@ static const NSUInteger IQLVMinimumFontSize = 9;
     NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:realText
                                                                          attributes:@{ NSFontAttributeName : font }];
     
+    attributedText = text.length > 0 ? attributedText : self.attributedPlaceholder;
+    
     CGRect rectSize = [attributedText boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGRectGetHeight(self.frame)-24)
                                                    options:NSStringDrawingUsesLineFragmentOrigin
                                                    context:nil];
     
-    float w1 = (ceilf(rectSize.size.width) + 24 < 50) ? self.frame.size.width : ceilf(rectSize.size.width) + 24;
-    float h1 =(ceilf(rectSize.size.height) + 24 < 50) ? 50 : ceilf(rectSize.size.height) + 24;
+    float w1 = (ceilf(rectSize.size.width) + 24 < 40) ? self.frame.size.width : ceilf(rectSize.size.width) + 24;
+    float h1 =(ceilf(rectSize.size.height) + 24 < 40) ? 40 : ceilf(rectSize.size.height) + 24;
     
     CGRect viewFrame = self.superview.bounds;
     viewFrame.size.width = w1 + 24;
