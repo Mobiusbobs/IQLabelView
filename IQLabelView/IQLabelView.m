@@ -470,14 +470,12 @@ static IQLabelView *lastTouchedView;
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     NSString *text = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    [textField adjustsWidthWithText:text];
 
     if (!isShowingEditingHandles) {
         [self showEditingHandles];
     }
     
-    [textField adjustsWidthWithText:text];
-
-
     return YES;
 }
 
