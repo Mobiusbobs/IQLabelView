@@ -46,7 +46,7 @@ static const NSUInteger IQLVMinimumFontSize = 9;
                                                    context:nil];
     
     float w1 = (ceilf(rectSize.size.width) + 24 < 40) ? self.frame.size.width : ceilf(rectSize.size.width) + 24;
-    float h1 =(ceilf(rectSize.size.height) + 24 < 40) ? 40 : ceilf(rectSize.size.height) + 24;
+    float h1 =(ceilf(rectSize.size.height) + 24 < 50) ? 50 : ceilf(rectSize.size.height) + 24;
     
     CGRect viewFrame = self.superview.bounds;
     viewFrame.size.width = w1 + 24;
@@ -68,7 +68,7 @@ static const NSUInteger IQLVMinimumFontSize = 9;
                                                    context:nil];
     
     float w1 = (ceilf(rectSize.size.width) + 24 < 40) ? self.frame.size.width : ceilf(rectSize.size.width) + 24;
-    float h1 =(ceilf(rectSize.size.height) + 24 < 40) ? 40 : ceilf(rectSize.size.height) + 24;
+    float h1 =(ceilf(rectSize.size.height) + 24 < 50) ? 50 : ceilf(rectSize.size.height) + 24;
     
     CGRect viewFrame = self.superview.bounds;
     viewFrame.size.width = w1 + 24;
