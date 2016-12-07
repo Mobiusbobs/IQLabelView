@@ -474,10 +474,9 @@ static IQLabelView *lastTouchedView;
         [self showEditingHandles];
     }
     
-//    NSString *text = [textField.text stringByReplacingCharactersInRange:range withString:string];
-//
-//    [textField adjustsWidthWithText:text];
-    [textField adjustsWidthToFillItsContents];
+    NSString *text = [textField.text stringByReplacingCharactersInRange:range withString:string];
+
+    [textField adjustsWidthWithText:text];
 
     return YES;
 }
